@@ -38,6 +38,8 @@ export component WindowChromeSection inherits Rectangle {
     // the descriptions swap with live state, so whichever form is on screen is the one in the
     // haystack — which only holds while there is one copy of it.
     property <string> os-managed-desc: @tr("Managed by the operating system");
+    property <string> sidebar-toggle-label: @tr("Show Collapse Button");
+    property <string> sidebar-toggle-desc: @tr("Show the button that folds the sidebar. Ctrl+B folds it either way.");
     property <string> native-titlebar-label: @tr("Native Title Bar");
     property <string> native-titlebar-desc: @tr("Use the operating system's native title bar instead of the custom one. Restart required to apply.");
     property <string> match-unfocused-label: @tr("Match Unfocused Window Background");
@@ -66,6 +68,7 @@ export component WindowChromeSection inherits Rectangle {
     // The three OS-managed rows share one description, blank unless the native bar is on.
     property <string> os-managed-when-native: root.native-titlebar ? os-managed-desc : "";
 
+    property <bool> show-sidebar-toggle: row-visible(sidebar-toggle-label, sidebar-toggle-desc);
     property <bool> show-native-titlebar: row-visible(native-titlebar-label, native-titlebar-desc);
     property <bool> show-match-unfocused: Settings.match-unfocused-supported
         && row-visible(match-unfocused-label, match-unfocused-desc);
@@ -78,12 +81,13 @@ export component WindowChromeSection inherits Rectangle {
     property <bool> show-close-to-tray: row-visible(close-to-tray-label, close-to-tray-desc);
 
     out property <bool> has-matches:
-        show-native-titlebar || show-match-unfocused || show-corner-radius
+        show-sidebar-toggle || show-native-titlebar || show-match-unfocused || show-corner-radius
             || show-window-border || show-border-color
             || show-titlebar-button-style || show-titlebar-button-side
             || show-tray-icon || show-close-to-tray;
 
-    property <bool> any-above-match: show-native-titlebar;
+    property <bool> any-above-native-titlebar: show-sidebar-toggle;
+    property <bool> any-above-match: any-above-native-titlebar || show-native-titlebar;
     property <bool> any-above-corner: any-above-match || show-match-unfocused;
     property <bool> any-above-window-border: any-above-corner || show-corner-radius;
     property <bool> any-above-border-color: any-above-window-border || show-window-border;
@@ -116,6 +120,20 @@ export component WindowChromeSection inherits Rectangle {
     VerticalLayout {
     if has-matches: SectionCard {
         title: root.card-title;
+
+        // The one row here that changes nothing about the OS window, and the sidebar's own
+        // furniture rather than the window's; it sits in this card because the rail is shell.
+        if root.show-sidebar-toggle: SettingRow {
+            icon: "dock_to_left";
+            label: root.sidebar-toggle-label;
+            description: root.sidebar-toggle-desc;
+            ToggleSwitch {
+                checked <=> Settings.show-sidebar-toggle;
+                toggled(v) => { Settings.show-sidebar-toggle-changed(v); }
+            }
+        }
+
+        if root.any-above-native-titlebar && root.show-native-titlebar: SectionDivider {}
 
         // The restart dialog carries the requested value as `target-id: 1|0`.
         // `manual: true` keeps the switch anchored to the persisted value until

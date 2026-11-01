@@ -2914,6 +2914,14 @@ msgid "Managed by the operating system"
 msgstr "Beheerd door het besturingssysteem"
 
 #: ui/views/settings/window-chrome-section.slint
+msgid "Show Collapse Button"
+msgstr "Knop voor inklappen tonen"
+
+#: ui/views/settings/window-chrome-section.slint
+msgid "Show the button that folds the sidebar. Ctrl+B folds it either way."
+msgstr "De knop tonen die de zijbalk inklapt. Ctrl+B klapt hem ook in."
+
+#: ui/views/settings/window-chrome-section.slint
 msgid "Native Title Bar"
 msgstr "Systeemtitelbalk"
 

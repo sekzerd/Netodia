@@ -2916,6 +2916,14 @@ msgid "Managed by the operating system"
 msgstr "Az operációs rendszer kezeli"
 
 #: ui/views/settings/window-chrome-section.slint
+msgid "Show Collapse Button"
+msgstr "Összecsukás gomb megjelenítése"
+
+#: ui/views/settings/window-chrome-section.slint
+msgid "Show the button that folds the sidebar. Ctrl+B folds it either way."
+msgstr "Az oldalsávot összecsukó gomb megjelenítése. A Ctrl+B is összecsukja."
+
+#: ui/views/settings/window-chrome-section.slint
 msgid "Native Title Bar"
 msgstr "Natív címsor"
 

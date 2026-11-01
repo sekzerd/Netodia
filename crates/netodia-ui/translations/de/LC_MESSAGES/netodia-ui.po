@@ -2915,6 +2915,14 @@ msgid "Managed by the operating system"
 msgstr "Vom Betriebssystem verwaltet"
 
 #: ui/views/settings/window-chrome-section.slint
+msgid "Show Collapse Button"
+msgstr "Einklapp-Schaltfläche anzeigen"
+
+#: ui/views/settings/window-chrome-section.slint
+msgid "Show the button that folds the sidebar. Ctrl+B folds it either way."
+msgstr "Die Schaltfläche anzeigen, die die Seitenleiste einklappt. Strg+B klappt sie ebenfalls ein."
+
+#: ui/views/settings/window-chrome-section.slint
 msgid "Native Title Bar"
 msgstr "Native Titelleiste"
 

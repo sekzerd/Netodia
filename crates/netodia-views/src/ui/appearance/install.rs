@@ -16,7 +16,7 @@ use super::{
     window_settings,
 };
 use netodia_app::library;
-use netodia_app::services::settings::SettingsData;
+use netodia_app::services::settings::{SettingsData, SidebarToggle};
 use netodia_app::state::{AppState, Signal};
 use netodia_core::error::{AppError, describe};
 use netodia_core::themes::SystemColorState;
@@ -99,6 +99,11 @@ fn spawn_repaint_subscriber(
 /// The window rows' persisted values, written before `app.show()` so the first
 /// painted frame reflects them.
 fn seed_window_rows(ui: &AppWindow, settings: &SettingsData) {
+    // Seed the Show Collapse Button row, which `layout/sidebar.slint` gates a whole row on —
+    // before `app.show()`, or the first frame draws the toggle the user turned off.
+    ui.global::<Settings>()
+        .set_show_sidebar_toggle(settings.layout.sidebar_toggle == SidebarToggle::Shown);
+
     // Seed the Match Unfocused Window Background row.
     {
         let g = ui.global::<Settings>();
@@ -205,6 +210,7 @@ fn wire_pickers(
 }
 
 fn wire_window_rows(ui: &AppWindow, state: &AppState) {
+    window_settings::wire_sidebar_toggle_changed(ui, state);
     window_settings::wire_match_unfocused_bg_changed(ui, state);
     window_settings::wire_corner_radius_changed(ui, state);
     window_settings::wire_titlebar_button_style_changed(ui, state);

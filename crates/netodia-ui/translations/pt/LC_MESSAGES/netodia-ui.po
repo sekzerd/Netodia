@@ -2914,6 +2914,14 @@ msgid "Managed by the operating system"
 msgstr "Gerido pelo sistema operativo"
 
 #: ui/views/settings/window-chrome-section.slint
+msgid "Show Collapse Button"
+msgstr "Mostrar botão de recolher"
+
+#: ui/views/settings/window-chrome-section.slint
+msgid "Show the button that folds the sidebar. Ctrl+B folds it either way."
+msgstr "Mostrar o botão que recolhe a barra lateral. Ctrl+B também a recolhe."
+
+#: ui/views/settings/window-chrome-section.slint
 msgid "Native Title Bar"
 msgstr "Barra de título nativa"
 

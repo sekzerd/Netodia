@@ -2921,6 +2921,14 @@ msgid "Managed by the operating system"
 msgstr "İşletim sistemi tarafından yönetilir"
 
 #: ui/views/settings/window-chrome-section.slint
+msgid "Show Collapse Button"
+msgstr "Daraltma Düğmesini Göster"
+
+#: ui/views/settings/window-chrome-section.slint
+msgid "Show the button that folds the sidebar. Ctrl+B folds it either way."
+msgstr "Kenar çubuğunu daraltan düğmeyi gösterir. Ctrl+B de daraltır."
+
+#: ui/views/settings/window-chrome-section.slint
 msgid "Native Title Bar"
 msgstr "Yerel Başlık Çubuğu"
 

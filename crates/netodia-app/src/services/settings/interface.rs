@@ -124,11 +124,25 @@ impl Default for TrayFlags {
     }
 }
 
+/// Whether the sidebar draws the button that folds it. A token rather than a `bool`,
+/// [`LayoutFlags`] already sitting at clippy's `struct_excessive_bools` cap — as [`WindowBorder`]
+/// is for [`WindowFlags`].
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Default, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum SidebarToggle {
+    #[default]
+    Shown,
+    Hidden,
+}
+
 /// In-app layout / visual toggles.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(default)]
 pub struct LayoutFlags {
     pub sidebar_collapsed: bool,
+    /// Whether the rail draws its collapse toggle. It hides the affordance and nothing else:
+    /// `Ctrl+B` folds the sidebar either way, which is why the row needs no restart.
+    pub sidebar_toggle: SidebarToggle,
     pub progress_state_layer: bool,
     /// KDE-only: under the native titlebar, tint the sidebar and now-playing
     /// bar toward `Theme.base` while unfocused, mirroring KDE's own
@@ -150,6 +164,7 @@ impl Default for LayoutFlags {
     fn default() -> Self {
         Self {
             sidebar_collapsed: false,
+            sidebar_toggle: SidebarToggle::Shown,
             progress_state_layer: true,
             match_unfocused_to_system_bg: false,
         }

@@ -2932,6 +2932,14 @@ msgid "Managed by the operating system"
 msgstr "Керується операційною системою"
 
 #: ui/views/settings/window-chrome-section.slint
+msgid "Show Collapse Button"
+msgstr "Показувати кнопку згортання"
+
+#: ui/views/settings/window-chrome-section.slint
+msgid "Show the button that folds the sidebar. Ctrl+B folds it either way."
+msgstr "Показувати кнопку, що згортає бічну панель. Ctrl+B також її згортає."
+
+#: ui/views/settings/window-chrome-section.slint
 msgid "Native Title Bar"
 msgstr "Системний заголовок вікна"
 

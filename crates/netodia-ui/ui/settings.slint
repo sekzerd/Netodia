@@ -240,6 +240,11 @@ export global Settings {
     in-out property <bool> window-border-shown: true;
     callback window-border-shown-changed(bool);
 
+    // Whether the sidebar draws the button that folds it. `layout/sidebar.slint` reads this
+    // directly, so Rust only persists it — `Ctrl+B` folds the rail either way.
+    in-out property <bool> show-sidebar-toggle: true;
+    callback show-sidebar-toggle-changed(bool);
+
     // The System swatch followed by the theme's accents in the live variant's shade, re-seeded on
     // every palette change, since a variant reshades both. 1:1 with `window-border-names`, whose
     // first entry is empty: the grid names the System swatch itself, so it stays translated.

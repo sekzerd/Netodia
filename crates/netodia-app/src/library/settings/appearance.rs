@@ -3,7 +3,10 @@
 //! [`crate::services::settings::mutate_settings`] so a burst of clicks
 //! can't race over the read-mutate-write window.
 
-use crate::services::{self, settings::ThemePreference};
+use crate::services::{
+    self,
+    settings::{SidebarToggle, ThemePreference},
+};
 use netodia_core::config::Paths;
 use netodia_core::error::AppError;
 
@@ -72,6 +75,14 @@ pub fn set_dynamic_color_style(paths: &Paths, style: String) -> Result<(), AppEr
 pub fn set_match_unfocused_to_system_bg(paths: &Paths, on: bool) -> Result<(), AppError> {
     services::settings::mutate_settings(paths, move |settings| {
         settings.layout.match_unfocused_to_system_bg = on;
+    })
+}
+
+/// Persist whether the sidebar draws its collapse toggle. `layout/sidebar.slint` reads
+/// `Settings.show-sidebar-toggle` directly, so this only commits it.
+pub fn set_sidebar_toggle(paths: &Paths, toggle: SidebarToggle) -> Result<(), AppError> {
+    services::settings::mutate_settings(paths, move |settings| {
+        settings.layout.sidebar_toggle = toggle;
     })
 }
 

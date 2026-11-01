@@ -139,8 +139,9 @@ export component Sidebar inherits Rectangle {
         padding: Theme.pad-sm;
         spacing: Theme.pad-xs;
 
-        // Collapse / expand toggle
-        Rectangle {
+        // Hidden by the Settings row, which takes the affordance away and nothing else:
+        // `Ctrl+B` folds the rail either way.
+        if Settings.show-sidebar-toggle: Rectangle {
             height: 36px;
             background: transparent;
 

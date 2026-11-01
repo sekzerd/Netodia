@@ -2917,6 +2917,14 @@ msgid "Managed by the operating system"
 msgstr "Διαχειρίζεται από το λειτουργικό σύστημα"
 
 #: ui/views/settings/window-chrome-section.slint
+msgid "Show Collapse Button"
+msgstr "Εμφάνιση κουμπιού σύμπτυξης"
+
+#: ui/views/settings/window-chrome-section.slint
+msgid "Show the button that folds the sidebar. Ctrl+B folds it either way."
+msgstr "Εμφάνιση του κουμπιού που συμπτύσσει την πλαϊνή στήλη. Το Ctrl+B την συμπτύσσει επίσης."
+
+#: ui/views/settings/window-chrome-section.slint
 msgid "Native Title Bar"
 msgstr "Εγγενής γραμμή τίτλου"
 

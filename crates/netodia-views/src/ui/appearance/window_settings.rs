@@ -8,7 +8,7 @@ use slint::ComponentHandle;
 
 use netodia_app::library;
 use netodia_app::services;
-use netodia_app::services::settings::{TitlebarButtonSide, TitlebarButtonStyle};
+use netodia_app::services::settings::{SidebarToggle, TitlebarButtonSide, TitlebarButtonStyle};
 use netodia_app::state::AppState;
 use netodia_ui::{AppWindow, MiniPlayer, Settings, Theme};
 
@@ -20,6 +20,18 @@ pub(super) fn wire_match_unfocused_bg_changed(ui: &AppWindow, state: &AppState) 
     ui.global::<Settings>().on_match_unfocused_bg_changed(move |on| {
         s.persist_blocking("persist match_unfocused_to_system_bg", move |paths| {
             library::settings::set_match_unfocused_to_system_bg(paths, on)
+        });
+    });
+}
+
+/// Wire the Show Collapse Button row. `layout/sidebar.slint` gates its toggle on the property the
+/// two-way binding has already flipped, so only the persist is left.
+pub(super) fn wire_sidebar_toggle_changed(ui: &AppWindow, state: &AppState) {
+    let s = state.clone();
+    ui.global::<Settings>().on_show_sidebar_toggle_changed(move |shown| {
+        let toggle = if shown { SidebarToggle::Shown } else { SidebarToggle::Hidden };
+        s.persist_blocking("persist sidebar_toggle", move |paths| {
+            library::settings::set_sidebar_toggle(paths, toggle)
         });
     });
 }

@@ -2896,6 +2896,14 @@ msgid "Managed by the operating system"
 msgstr "由操作系统管理"
 
 #: ui/views/settings/window-chrome-section.slint
+msgid "Show Collapse Button"
+msgstr "显示折叠按钮"
+
+#: ui/views/settings/window-chrome-section.slint
+msgid "Show the button that folds the sidebar. Ctrl+B folds it either way."
+msgstr "显示用于折叠侧边栏的按钮。Ctrl+B 同样可以折叠侧边栏。"
+
+#: ui/views/settings/window-chrome-section.slint
 msgid "Native Title Bar"
 msgstr "原生标题栏"
 
